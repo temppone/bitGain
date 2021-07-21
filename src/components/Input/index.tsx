@@ -1,17 +1,17 @@
-import { FC, InputHTMLAttributes } from 'react';
-
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+type Props = {
+    onChange: (str: string) => void;
+    placeholder: string;
     name: string;
-    label: string;
-}
+    value?: string;
+};
 
-const Input: FC<InputProps> = ({ name, label }) => {
-    return (
-        <div>
-            <label htmlFor={name}>{label}</label>
-            <input id={name}></input>
-        </div>
-    );
+const Input = ({ onChange, name, placeholder, value = '' }: Props) => {
+    <input
+        onChange={(event) => onChange(event.target.value)}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+    />;
 };
 
 export default Input;
