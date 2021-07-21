@@ -3,12 +3,13 @@
         "browser": true,
         "es2021": true
     },
-    "extends": ["plugin:react/recommended", "airbnb"],
+    "extends": ["plugin:react/recommended", "airbnb-typescript"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
+        "project": "./tsconfig.json",
         "ecmaVersion": 12,
         "sourceType": "module"
     },
@@ -23,6 +24,16 @@
         // jsx-a11y rules
         "jsx-a11y/click-events-have-key-events": "off",
         "jsx-a11y/no-autofocus": "off",
-        "jsx-a11y/no-onchange": "off"
+        "jsx-a11y/no-onchange": "off",
+
+        "indent": "off",
+        "import/prefer-default-export": "off",
+
+        "react/jsx-filename-extension": [2, { "extensions": [".tsx"] }],
+        "react/jsx-indent": "off",
+        "@typescript-eslint/indent": "off",
+        "react/jsx-indent-props": "off",
+        "jsx-quotes": "off",
+        "object-curly-newline": "off"
     }
 }
