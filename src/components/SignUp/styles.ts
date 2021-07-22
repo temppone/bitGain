@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const LoginContainer = styled.div`
+export const SignUpContainer = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    width: 90%;
 `;
 
-export const LoginForm = styled.form`
+export const SignUpForm = styled.form`
     padding: 1rem;
 `;

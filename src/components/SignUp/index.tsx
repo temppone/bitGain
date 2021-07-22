@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useFirebaseContext } from '../../contexts/FirebaseContext';
 import Input from '../Input';
-import { LoginContainer, LoginForm } from './styles';
+import { SignUpContainer, SignUpForm } from './styles';
 import PageTitle from '../PageTitle';
+import Button from '../Button';
 
-const Login = () => {
+const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { createUser } = useFirebaseContext();
@@ -13,9 +14,9 @@ const Login = () => {
         createUser({ email, password });
     };
     return (
-        <LoginContainer>
+        <SignUpContainer>
             <PageTitle title='Cadastre-se' salutation='Preencha os campos' />
-            <LoginForm>
+            <SignUpForm>
                 <Input
                     label='Email'
                     name='email'
@@ -37,12 +38,10 @@ const Login = () => {
                     onChange={(event) => setPassword(event.target.value)}
                     inputError='Esse campo é necessário'
                 />
-            </LoginForm>
-            <button type='submit' onClick={handleSubmit}>
-                Enviar
-            </button>
-        </LoginContainer>
+                <Button onClick={handleSubmit} name='Cadastrar' width='100%' />
+            </SignUpForm>
+        </SignUpContainer>
     );
 };
 
-export default Login;
+export default SignUp;
