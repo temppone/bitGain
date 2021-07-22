@@ -1,3 +1,4 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { ptShort } from 'yup-locale-pt';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -26,22 +27,23 @@ const SignUp = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: yupResolver(schema) });
+    } = useForm<CreateUserType>({ resolver: yupResolver(schema) });
 
-    const handleSubmit = () => {
-        createUser({ email, password });
+    const signUpSubmit = (signUpUser: { email: string; password: string }) => {
+        console.log(signUpUser.email, signUpUser.password);
+        createUser(signUpUser);
     };
     return (
         <SignUpContainer>
             <PageTitle title='Cadastre-se' salutation='Preencha os campos' />
-            <SignUpForm>
+            <SignUpForm action='' onSubmit={handleSubmit(signUpSubmit)}>
                 <Input
                     label='Email'
                     name='email'
                     // eslint-disable-next-line react/jsx-boolean-value
                     required={true}
                     register={register}
-                    inputError={errors.email?.message}
+                    inputError={errors?.email?.message}
                 />
                 <Input
                     label='Senha'
@@ -49,7 +51,7 @@ const SignUp = () => {
                     // eslint-disable-next-line react/jsx-boolean-value
                     required={true}
                     register={register}
-                    inputError={errors.password?.message}
+                    inputError={errors?.password?.message}
                 />
                 {/* <Input
                     label='Confirmar senha'
@@ -58,7 +60,7 @@ const SignUp = () => {
                     onChange={(event) => setPassword(event.target.value)}
                     inputError='Esse campo é necessário'
                 /> */}
-                <Button onClick={handleSubmit} name='Cadastrar' width='100%' />
+                <Button name='Cadastrar' width='100%' />
             </SignUpForm>
         </SignUpContainer>
     );
