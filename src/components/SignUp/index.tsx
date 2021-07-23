@@ -1,12 +1,12 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ptShort } from 'yup-locale-pt';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { useFirebaseContext } from '../../contexts/FirebaseContext';
-import Input from '../Input';
-import { SignUpContainer, SignUpForm } from './styles';
-import PageTitle from '../PageTitle';
 import Button from '../Button';
+import Input from '../Input';
+import PageTitle from '../PageTitle';
+import { SignUpContainer, SignUpForm } from './styles';
 
 const SignUp = () => {
     const { createUser } = useFirebaseContext();
@@ -17,23 +17,18 @@ const SignUp = () => {
         passwordConfirm: string;
     };
 
-    yup.setLocale(ptShort);
-
-    const schema: yup.SchemaOf<CreateUserType> = yup.object().shape({
-        email: yup.string().default('').email().required(),
-        password: yup.string().default('').min(6).required(),
+    const schema: yup.SchemaOf<CreateUserType> = yup.object({
+        email: yup.string().email().required(),
+        password: yup.string().min(6).required(),
         passwordConfirm: yup
             .string()
-            .default('')
-            .oneOf([yup.ref('password'), null], 'As senhas precisam ser iguais')
-            .required(),
+            .required()
+            .oneOf([yup.ref('password'), null], 'Senhas precisam ser iguais'),
     });
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<CreateUserType>({ resolver: yupResolver(schema) });
+    const { control, handleSubmit, errors } = useForm<CreateUserType>({
+        resolver: yupResolver(schema),
+    });
 
     const signUpSubmit: SubmitHandler<CreateUserType> = (data) => {
         createUser(data);
@@ -43,30 +38,39 @@ const SignUp = () => {
         <SignUpContainer>
             <PageTitle title='Cadastre-se' salutation='Preencha os campos' />
 
-            <SignUpForm action='' inputError onSubmit={handleSubmit(signUpSubmit)}>
-                <Input
-                    label='Email'
+            <SignUpForm action='' onSubmit={handleSubmit(signUpSubmit)}>
+                <Controller
                     name='email'
-                    required
-                    register={register}
-                    inputError={errors?.email?.message}
+                    control={control}
+                    render={(props) => (
+                        <Input label='Email' inputError={errors.email?.message ?? ''} {...props} />
+                    )}
                 />
-                <Input
-                    label='Senha'
+                <Controller
                     name='password'
-                    type='password'
-                    required
-                    register={register}
-                    inputError={errors?.password?.message}
+                    control={control}
+                    render={(props) => (
+                        <Input
+                            label='Senha'
+                            type='password'
+                            inputError={errors.password?.message ?? ''}
+                            {...props}
+                        />
+                    )}
                 />
-                <Input
-                    label='Confirmar senha'
-                    name='passwordCofirm'
-                    type='password'
-                    required
-                    register={register}
-                    inputError={errors?.passwordConfirm?.message}
+                <Controller
+                    name='passwordConfirm'
+                    control={control}
+                    render={(props) => (
+                        <Input
+                            label='Confirmar senha'
+                            type='password'
+                            inputError={errors.passwordConfirm?.message ?? ''}
+                            {...props}
+                        />
+                    )}
                 />
+
                 <Button name='Cadastrar' width='100%' />
             </SignUpForm>
         </SignUpContainer>

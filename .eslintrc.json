@@ -34,6 +34,7 @@
         "@typescript-eslint/indent": "off",
         "react/jsx-indent-props": "off",
         "jsx-quotes": "off",
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "react/no-this-in-sfc": "off"
     }
 }

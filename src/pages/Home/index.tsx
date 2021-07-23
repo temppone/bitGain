@@ -7,8 +7,14 @@ import SignUp from '../../components/SignUp';
 import SignIn from '../../components/SignIn';
 
 const Home = () => {
-    const [signInSiginUp, setSignInSiginUp] = useState(true);
+    const [divToRender, setDivToRender] = useState<'signIn' | 'signUp' | 'none'>('none');
     const [homeIntro, setHomeIntro] = useState(true);
+
+    const divs = {
+        signIn: <SignIn />,
+        signUp: <SignUp />,
+        none: null,
+    };
 
     return (
         <HomeContainer>
@@ -23,14 +29,12 @@ const Home = () => {
                 </HomeIntro>
             )}
 
-            {signInSiginUp ? <SignIn /> : <SignUp />}
-
             <HomeButtons>
                 <Button
                     width='auto'
                     name='Login'
                     onClick={() => {
-                        setSignInSiginUp(true);
+                        setDivToRender('signIn');
                         setHomeIntro(false);
                     }}
                 />
@@ -38,11 +42,13 @@ const Home = () => {
                     width='auto'
                     name='Cadastrar-se'
                     onClick={() => {
-                        setSignInSiginUp(false);
+                        setDivToRender('signUp');
                         setHomeIntro(false);
                     }}
                 />
             </HomeButtons>
+
+            {divs[divToRender]}
         </HomeContainer>
     );
 };

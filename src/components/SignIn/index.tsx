@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { ptShort } from 'yup-locale-pt';
 import * as yup from 'yup';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SignInContainer, SignInForm } from './styles';
 import { useFirebaseContext } from '../../contexts/FirebaseContext';
@@ -24,12 +25,13 @@ const SignIn = () => {
     });
 
     const {
-        register,
+        control,
         handleSubmit,
         formState: { errors },
     } = useForm<SignInTypes>({ resolver: yupResolver(schema) });
 
     const SignInSubmit: SubmitHandler<SignInTypes> = (data) => {
+        console.log(login);
         login(data);
     };
 
@@ -37,20 +39,24 @@ const SignIn = () => {
         <SignInContainer>
             <PageTitle title='Olá de novo!' salutation='Digite seu email e senha' />
             <SignInForm action='' onSubmit={handleSubmit(SignInSubmit)}>
-                <Input
-                    label='Email'
+                <Controller
                     name='email'
-                    required
-                    register={register}
-                    inputError={errors?.email?.message}
+                    control={control}
+                    render={(props) => (
+                        <Input label='Email' inputError={errors.email?.message ?? ''} {...props} />
+                    )}
                 />
-                <Input
-                    label='Senha'
+                <Controller
                     name='password'
-                    type='password'
-                    required
-                    register={register}
-                    inputError={errors?.password?.message}
+                    control={control}
+                    render={(props) => (
+                        <Input
+                            label='Senha'
+                            type='password'
+                            inputError={errors.password?.message ?? ''}
+                            {...props}
+                        />
+                    )}
                 />
 
                 <Button name='Entrar' width='100%' />
