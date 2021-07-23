@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ptShort } from 'yup-locale-pt';
 import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useFirebaseContext } from '../../contexts/FirebaseContext';
 import Input from '../Input';
 import { SignUpContainer, SignUpForm } from './styles';
@@ -14,13 +14,19 @@ const SignUp = () => {
     type CreateUserType = {
         email: string;
         password: string;
+        passwordConfirm: string;
     };
 
     yup.setLocale(ptShort);
 
     const schema: yup.SchemaOf<CreateUserType> = yup.object().shape({
-        email: yup.string().email().required(),
-        password: yup.string().min(6).required(),
+        email: yup.string().default('').email().required(),
+        password: yup.string().default('').min(6).required(),
+        passwordConfirm: yup
+            .string()
+            .default('')
+            .oneOf([yup.ref('password'), null], 'As senhas precisam ser iguais')
+            .required(),
     });
 
     const {
@@ -29,37 +35,38 @@ const SignUp = () => {
         formState: { errors },
     } = useForm<CreateUserType>({ resolver: yupResolver(schema) });
 
-    const signUpSubmit = (signUpUser: { email: string; password: string }) => {
-        console.log(signUpUser.email, signUpUser.password);
-        createUser(signUpUser);
+    const signUpSubmit: SubmitHandler<CreateUserType> = (data) => {
+        createUser(data);
     };
+
     return (
         <SignUpContainer>
             <PageTitle title='Cadastre-se' salutation='Preencha os campos' />
-            <SignUpForm action='' onSubmit={handleSubmit(signUpSubmit)}>
+
+            <SignUpForm action='' inputError onSubmit={handleSubmit(signUpSubmit)}>
                 <Input
                     label='Email'
                     name='email'
-                    // eslint-disable-next-line react/jsx-boolean-value
-                    required={true}
+                    required
                     register={register}
                     inputError={errors?.email?.message}
                 />
                 <Input
                     label='Senha'
                     name='password'
-                    // eslint-disable-next-line react/jsx-boolean-value
-                    required={true}
+                    type='password'
+                    required
                     register={register}
                     inputError={errors?.password?.message}
                 />
-                {/* <Input
+                <Input
                     label='Confirmar senha'
                     name='passwordCofirm'
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    inputError='Esse campo é necessário'
-                /> */}
+                    type='password'
+                    required
+                    register={register}
+                    inputError={errors?.passwordConfirm?.message}
+                />
                 <Button name='Cadastrar' width='100%' />
             </SignUpForm>
         </SignUpContainer>
