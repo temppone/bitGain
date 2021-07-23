@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { useFirebaseContext } from '../../contexts/FirebaseContext';
+import { defaultTheme } from '../../styles/theme';
 import Button from '../Button';
 import Input from '../Input';
 import PageTitle from '../PageTitle';
@@ -71,7 +72,12 @@ const SignUp = () => {
                     )}
                 />
 
-                <Button name='Cadastrar' width='100%' />
+                <Button
+                    background={defaultTheme.palette.primaryLight}
+                    color={defaultTheme.palette.primaryDark}
+                    name='Cadastrar'
+                    width='100%'
+                />
             </SignUpForm>
         </SignUpContainer>
     );

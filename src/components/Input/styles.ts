@@ -8,6 +8,7 @@ export const InputContainer = styled.div`
     margin-bottom: 1rem;
     font-size: 1.2rem;
     height: 7rem;
+    width: 100%;
 `;
 
 export const InputLabel = styled.label`

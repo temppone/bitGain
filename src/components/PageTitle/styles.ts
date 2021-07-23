@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const PageTitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 1rem;
 `;
 

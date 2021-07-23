@@ -8,6 +8,7 @@ import { useFirebaseContext } from '../../contexts/FirebaseContext';
 import Input from '../Input';
 import PageTitle from '../PageTitle';
 import Button from '../Button';
+import { defaultTheme } from '../../styles/theme';
 
 const SignIn = () => {
     const { login } = useFirebaseContext();
@@ -43,7 +44,12 @@ const SignIn = () => {
                     name='email'
                     control={control}
                     render={(props) => (
-                        <Input label='Email' inputError={errors.email?.message ?? ''} {...props} />
+                        <Input
+                            label='Email'
+                            inputError={errors.email?.message ?? ''}
+                            placeholder='email@examplo.com'
+                            {...props}
+                        />
                     )}
                 />
                 <Controller
@@ -54,12 +60,18 @@ const SignIn = () => {
                             label='Senha'
                             type='password'
                             inputError={errors.password?.message ?? ''}
+                            placeholder='******'
                             {...props}
                         />
                     )}
                 />
 
-                <Button name='Entrar' width='100%' />
+                <Button
+                    background={defaultTheme.palette.primaryLight}
+                    color={defaultTheme.palette.primaryDark}
+                    name='Entrar'
+                    width='100%'
+                />
             </SignInForm>
         </SignInContainer>
     );

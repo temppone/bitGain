@@ -1,10 +1,12 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import { useState } from 'react';
-import { HomeContainer, HomeIntro, HomeButtons } from './styles';
-import { ReactComponent as HomeSvg } from './img/home.svg';
-import PageTitle from '../../components/PageTitle';
+import { HomeContainer, HomeIntro, HomeSalutation, HomeTitle, HomeButtons } from './styles';
+import { ReactComponent as HomeSvg } from './img/homeSvg.svg';
 import Button from '../../components/Button';
 import SignUp from '../../components/SignUp';
 import SignIn from '../../components/SignIn';
+import { defaultTheme } from '../../styles/theme';
+import { ReactComponent as BackButton } from './img/back.svg';
 
 const Home = () => {
     const [divToRender, setDivToRender] = useState<'signIn' | 'signUp' | 'none'>('none');
@@ -18,35 +20,51 @@ const Home = () => {
 
     return (
         <HomeContainer>
-            <HomeSvg width='70%' />
+            {homeIntro && (
+                <BackButton
+                    onClick={() => {
+                        setHomeIntro(true);
+                        setDivToRender('none');
+                    }}
+                />
+            )}
 
+            {homeIntro && <HomeSvg width='80%' height='25rem' />}
             {homeIntro && (
                 <HomeIntro>
-                    <PageTitle
-                        title='Compra e vendas de Bitcoin é aqui!'
-                        salutation='A corretora completa para investir com segurança e praticidade nas criptomoedas mais negociadas do mundo.'
-                    />
+                    <HomeTitle>
+                        Compra e venda de <span>Bitcoin é aqui!</span>
+                    </HomeTitle>
+                    <HomeSalutation>
+                        A corretora completa para investir com segurança nas criptomoedas.
+                    </HomeSalutation>
                 </HomeIntro>
             )}
 
-            <HomeButtons>
-                <Button
-                    width='auto'
-                    name='Login'
-                    onClick={() => {
-                        setDivToRender('signIn');
-                        setHomeIntro(false);
-                    }}
-                />
-                <Button
-                    width='auto'
-                    name='Cadastrar-se'
-                    onClick={() => {
-                        setDivToRender('signUp');
-                        setHomeIntro(false);
-                    }}
-                />
-            </HomeButtons>
+            {homeIntro && (
+                <HomeButtons>
+                    <Button
+                        width='auto'
+                        name='Login'
+                        background={defaultTheme.palette.primaryLight}
+                        color={defaultTheme.palette.primaryDark}
+                        onClick={() => {
+                            setDivToRender('signIn');
+                            setHomeIntro(false);
+                        }}
+                    />
+                    <Button
+                        width='auto'
+                        name='Cadastrar-se'
+                        background='transparent'
+                        color={defaultTheme.palette.primaryLight}
+                        onClick={() => {
+                            setDivToRender('signUp');
+                            setHomeIntro(false);
+                        }}
+                    />
+                </HomeButtons>
+            )}
 
             {divs[divToRender]}
         </HomeContainer>
