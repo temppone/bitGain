@@ -4,6 +4,7 @@ export const SignInContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 90%;
 `;
 
 export const SignInForm = styled.form`

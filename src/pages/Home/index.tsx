@@ -7,8 +7,8 @@ import SignUp from '../../components/SignUp';
 import SignIn from '../../components/SignIn';
 
 const Home = () => {
+    const [signInSiginUp, setSignInSiginUp] = useState(true);
     const [homeIntro, setHomeIntro] = useState(true);
-    const [divIntro, setDivIntro] = useState(true);
 
     return (
         <HomeContainer>
@@ -23,14 +23,14 @@ const Home = () => {
                 </HomeIntro>
             )}
 
-            {divIntro ? <SignIn /> : <SignUp />}
+            {signInSiginUp ? <SignIn /> : <SignUp />}
 
             <HomeButtons>
                 <Button
                     width='auto'
                     name='Login'
                     onClick={() => {
-                        setDivIntro(true);
+                        setSignInSiginUp(true);
                         setHomeIntro(false);
                     }}
                 />
@@ -38,7 +38,7 @@ const Home = () => {
                     width='auto'
                     name='Cadastrar-se'
                     onClick={() => {
-                        setDivIntro(false);
+                        setSignInSiginUp(false);
                         setHomeIntro(false);
                     }}
                 />

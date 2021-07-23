@@ -11,5 +11,5 @@ export const SignUpContainer = styled.div`
 `;
 
 export const SignUpForm = styled.form<SignUpProps>`
-    padding: 1rem;
+    padding: 2rem;
 `;

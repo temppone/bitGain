@@ -10,7 +10,7 @@ export const defaultTheme: DefaultTheme = {
         secundaryLight: '#e6e6e6',
         tertiaryLight: '#d8d8d8',
 
-        contrast: '#FAC43F',
+        contrast: '#ffc656',
 
         warning: '#F64B4C',
     },

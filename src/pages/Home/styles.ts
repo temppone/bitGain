@@ -35,10 +35,7 @@ export const HomeIntro = styled.div`
 
 export const HomeButtons = styled.div`
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
     padding: 1rem;
-
-    button {
-        margin-left: 1rem;
-    }
 `;

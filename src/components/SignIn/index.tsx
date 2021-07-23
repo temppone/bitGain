@@ -53,7 +53,7 @@ const SignIn = () => {
                     inputError={errors?.password?.message}
                 />
 
-                <Button name='Cadastrar' width='100%' />
+                <Button name='Entrar' width='100%' />
             </SignInForm>
         </SignInContainer>
     );
