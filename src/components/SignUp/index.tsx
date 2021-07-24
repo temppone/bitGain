@@ -44,7 +44,12 @@ const SignUp = () => {
                     name='email'
                     control={control}
                     render={(props) => (
-                        <Input label='Email' inputError={errors.email?.message ?? ''} {...props} />
+                        <Input
+                            label='Email'
+                            inputError={errors.email?.message ?? ''}
+                            placeholder='email@exemplo.com'
+                            {...props}
+                        />
                     )}
                 />
                 <Controller
@@ -55,6 +60,7 @@ const SignUp = () => {
                             label='Senha'
                             type='password'
                             inputError={errors.password?.message ?? ''}
+                            placeholder='******'
                             {...props}
                         />
                     )}
@@ -67,6 +73,7 @@ const SignUp = () => {
                             label='Confirmar senha'
                             type='password'
                             inputError={errors.passwordConfirm?.message ?? ''}
+                            placeholder='******'
                             {...props}
                         />
                     )}

@@ -1,12 +1,18 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import { useState } from 'react';
-import { HomeContainer, HomeIntro, HomeSalutation, HomeTitle, HomeButtons } from './styles';
+import {
+    HomeContainer,
+    HomeIntro,
+    HomeSalutation,
+    HomeTitle,
+    HomeButtons,
+    HomeBackButton,
+} from './styles';
 import { ReactComponent as HomeSvg } from './img/homeSvg.svg';
 import Button from '../../components/Button';
 import SignUp from '../../components/SignUp';
 import SignIn from '../../components/SignIn';
 import { defaultTheme } from '../../styles/theme';
-import { ReactComponent as BackButton } from './img/back.svg';
 
 const Home = () => {
     const [divToRender, setDivToRender] = useState<'signIn' | 'signUp' | 'none'>('none');
@@ -20,8 +26,8 @@ const Home = () => {
 
     return (
         <HomeContainer>
-            {homeIntro && (
-                <BackButton
+            {!homeIntro && (
+                <HomeBackButton
                     onClick={() => {
                         setHomeIntro(true);
                         setDivToRender('none');

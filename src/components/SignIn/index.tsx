@@ -32,7 +32,6 @@ const SignIn = () => {
     } = useForm<SignInTypes>({ resolver: yupResolver(schema) });
 
     const SignInSubmit: SubmitHandler<SignInTypes> = (data) => {
-        console.log(login);
         login(data);
     };
 
@@ -47,7 +46,7 @@ const SignIn = () => {
                         <Input
                             label='Email'
                             inputError={errors.email?.message ?? ''}
-                            placeholder='email@examplo.com'
+                            placeholder='email@exemplo.com'
                             {...props}
                         />
                     )}

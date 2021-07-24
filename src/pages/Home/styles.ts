@@ -53,7 +53,6 @@ export const HomeButtons = styled.div`
     padding: 1rem;
 `;
 
-export const BackButton = styled(BackButton)`
-    display: flex;
-    justify-content: flex-start;
+export const HomeBackButton = styled(BackButton)`
+    align-self: flex-start;
 `;
