@@ -21,7 +21,7 @@ const App = (): JSX.Element => (
                             <Route exact path='/'>
                                 <Home />
                             </Route>
-                            <Route exact path='dashboard'>
+                            <Route exact path='/dashboard'>
                                 <Dashboard />
                             </Route>
                         </Switch>

@@ -12,6 +12,7 @@ declare module 'styled-components' {
             tertiaryLight: string;
 
             contrast: string;
+            secundaryContrast: string;
 
             warning: string;
         };

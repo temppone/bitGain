@@ -4,13 +4,14 @@ export const defaultTheme: DefaultTheme = {
     palette: {
         primaryDark: '#121920',
         secundaryDark: '#1C242B',
-        tertiaryDark: '#4c4c4c',
+        tertiaryDark: '#334049',
 
         primaryLight: '#ffffff',
         secundaryLight: '#e6e6e6',
         tertiaryLight: '#d8d8d8',
 
         contrast: '#ffc656',
+        secundaryContrast: '#2a7ccb',
 
         warning: '#F64B4C',
     },

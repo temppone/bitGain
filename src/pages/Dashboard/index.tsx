@@ -1,15 +1,31 @@
-import { DashboardContainer, DashboardBox } from './styles';
+import {
+    DashboardTitle,
+    DashboardContainer,
+    DashboardCard,
+    DashboardCardBox,
+    DashboardCardSecundaryBox,
+    DashboardCardTitle,
+    DashboardCardValue,
+    DashboardCardSecundaryValue,
+    DashboardCardPercent,
+} from './styles';
 
 const Dashboard = () => (
     <DashboardContainer>
-        <DashboardBox>
-            <p>Teste</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore cum numquam labore
-                voluptas dolores nemo. Dolore inventore ad nisi blanditiis tempora tempore dicta
-                quibusdam aliquid iure. Quod, sunt. Accusantium, saepe?
-            </p>
-        </DashboardBox>
+        <DashboardTitle>Olá!</DashboardTitle>
+        <DashboardCard>
+            <DashboardCardBox>
+                <DashboardCardTitle>Total</DashboardCardTitle>
+                <DashboardCardValue>R$ 148.679,65</DashboardCardValue>
+            </DashboardCardBox>
+            <DashboardCardSecundaryBox>
+                <DashboardCardBox>
+                    <DashboardCardTitle>Este mês</DashboardCardTitle>
+                    <DashboardCardSecundaryValue>R$ 23.432,12</DashboardCardSecundaryValue>
+                </DashboardCardBox>
+                <DashboardCardPercent>+14%</DashboardCardPercent>
+            </DashboardCardSecundaryBox>
+        </DashboardCard>
     </DashboardContainer>
 );
 

@@ -32,6 +32,7 @@ const SignIn = () => {
     } = useForm<SignInTypes>({ resolver: yupResolver(schema) });
 
     const SignInSubmit: SubmitHandler<SignInTypes> = (data) => {
+        console.log(login);
         login(data);
     };
 

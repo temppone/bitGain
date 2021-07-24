@@ -21,7 +21,7 @@ export const InputField = styled.input<{ inputError: string }>`
     width: 100%;
     padding: 1rem;
     border-radius: 0.8rem;
-    transition: 3ms;
+    transition: 0.5s;
     background: ${({ theme }) => theme.palette.secundaryDark};
     color: ${({ theme }) => theme.palette.primaryLight};
 
