@@ -15,6 +15,7 @@ declare module 'styled-components' {
             secundaryContrast: string;
 
             warning: string;
+            success: string;
         };
         breakpoints: {
             xs: string;

@@ -14,6 +14,7 @@ export const defaultTheme: DefaultTheme = {
         secundaryContrast: '#2a7ccb',
 
         warning: '#F64B4C',
+        success: '#BFFFC9',
     },
 
     breakpoints: {
