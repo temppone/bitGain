@@ -41,4 +41,5 @@ export const InputField = styled.input<{ inputError: string }>`
 export const InputWarning = styled.div`
     padding: 0.2rem 0.4rem;
     color: ${({ theme }) => theme.palette.warning};
+    font-size: 1rem;
 `;

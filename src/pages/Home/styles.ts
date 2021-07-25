@@ -25,6 +25,25 @@ export const HomeContainer = styled.div`
     ul {
         list-style: none;
     }
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.xs}) {
+        max-width: 599px;
+    }
+    @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+        max-width: 800px;
+    }
+    @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+    @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+    @media (min-width: ${({ theme }) => theme.breakpoints.xs}) {
+        max-width: 1380px;
+        margin: 0 auto;
+    }
 `;
 
 export const HomeIntro = styled.div`

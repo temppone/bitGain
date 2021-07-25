@@ -4,9 +4,9 @@ export const FooterContainer = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 12rem;
-    height: 5rem;
+    height: 1rem;
     text-align: center;
+    padding: 10rem;
 `;
 
 export const FooterItem = styled.div`
