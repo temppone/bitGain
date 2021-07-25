@@ -13,6 +13,7 @@ import Button from '../../components/Button';
 import SignUp from '../../components/SignUp';
 import SignIn from '../../components/SignIn';
 import { defaultTheme } from '../../styles/theme';
+import Head from '../../components/Head';
 
 const Home = () => {
     const [divToRender, setDivToRender] = useState<'signIn' | 'signUp' | 'none'>('none');
@@ -26,6 +27,8 @@ const Home = () => {
 
     return (
         <HomeContainer>
+            <Head title='BitGain' description='Essa é a tela inícial da BitGain' />
+
             {!homeIntro && (
                 <HomeBackButton
                     onClick={() => {
