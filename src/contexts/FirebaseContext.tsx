@@ -16,8 +16,8 @@ if (!firebase.apps.length) {
 
 type FirebaseContextType = {
     firebase: firebase.app.App;
-    login: (params: { email: string; password: string }) => void;
-    createUser: (params: { email: string; password: string }) => void;
+    login: (params: { email: string; password: string }) => any;
+    createUser: (params: { email: string; password: string }) => any;
     logout: () => void;
 };
 
@@ -26,19 +26,15 @@ const FirebaseContext = createContext<FirebaseContextType>({} as FirebaseContext
 export const useFirebaseContext = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }: any) => {
-    const login = ({ email, password }: { email: string; password: string }) => {
-        firebase.auth().signInWithEmailAndPassword(email, password);
+    const login = async ({ email, password }: { email: string; password: string }) => {
+        await firebase.auth().signInWithEmailAndPassword(email, password);
     };
 
-    const createUser = ({ email, password }: { email: string; password: string }) => {
-        try {
-            firebase
-                .auth()
-                .createUserWithEmailAndPassword(email, password)
-                .then((credencial) => console.log(credencial));
-        } catch (err) {
-            console.log(err);
-        }
+    const createUser = async ({ email, password }: { email: string; password: string }) => {
+        await firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then((credencial) => credencial);
     };
 
     const logout = () => {

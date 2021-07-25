@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import * as yup from 'yup';
 import { useFirebaseContext } from '../../contexts/FirebaseContext';
 import { defaultTheme } from '../../styles/theme';
@@ -32,7 +33,11 @@ const SignUp = () => {
     });
 
     const signUpSubmit: SubmitHandler<CreateUserType> = (data) => {
-        createUser(data);
+        toast.promise(createUser(data), {
+            loading: 'Carregando',
+            success: 'Usuário criado',
+            error: 'Algo deu errado',
+        });
     };
 
     return (

@@ -3,6 +3,7 @@ import { ptShort } from 'yup-locale-pt';
 import * as yup from 'yup';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import toast from 'react-hot-toast';
 import { SignInContainer, SignInForm } from './styles';
 import { useFirebaseContext } from '../../contexts/FirebaseContext';
 import Input from '../Input';
@@ -32,8 +33,11 @@ const SignIn = () => {
     } = useForm<SignInTypes>({ resolver: yupResolver(schema) });
 
     const SignInSubmit: SubmitHandler<SignInTypes> = (data) => {
-        console.log(login);
-        login(data);
+        toast.promise(login(data), {
+            loading: 'Carregando',
+            success: 'Logado',
+            error: 'Algo deu errado',
+        });
     };
 
     return (

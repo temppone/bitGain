@@ -46,6 +46,7 @@ const Dashboard = () => (
                 </DashboardCardPercent>
             </DashboardCardSecundaryBox>
         </DashboardCard>
+
         <DashboardCard background={defaultTheme.palette.secundaryDark}>
             <DashboardCardSecundaryBox>
                 <DashboardCardBox>

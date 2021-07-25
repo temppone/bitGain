@@ -27,6 +27,7 @@ export const DashboardCard = styled.div<DashboardStylesType>`
     background: ${({ background }) => background};
     border-radius: 0.9rem;
     margin: 1rem 0;
+    cursor: pointer;
 `;
 
 export const DashboardCardBox = styled.div`
