@@ -4,17 +4,37 @@ type DashboardStylesType = {
     background: string;
 };
 
-export const DashboardTitle = styled.h1`
-    padding: 1rem;
-    align-self: flex-start;
-`;
-
 export const DashboardContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1rem;
+
+    div {
+        animation: slideOpacity 0.5s;
+    }
+
+    @keyframes slideOpacity {
+        from {
+            opacity: 0;
+            bottom: -5.2rem;
+        }
+
+        to {
+            opacity: 1;
+            bottom: -1.2rem;
+        }
+    }
+
+    ul {
+        list-style: none;
+    }
+`;
+
+export const DashboardTitle = styled.h1`
+    padding: 1rem;
+    align-self: flex-start;
 `;
 
 export const DashboardCard = styled.div<DashboardStylesType>`

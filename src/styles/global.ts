@@ -8,28 +8,7 @@ export const GlobalStyle = createGlobalStyle`
       padding: 0;
       outline: 0;
       box-sizing: border-box;    
-    }
-
-  div {
-        animation: slideOpacity 0.5s;
-  }
-
-    @keyframes slideOpacity {
-        from {
-            opacity: 0;
-            bottom: -5.2rem;
-        }
-
-        to {
-            opacity: 1;
-            bottom: -1.2rem;
-        }
-    }
-    
-  ul{
-    list-style: none;
-  }
-  
+  }  
   button{
     box-shadow: none;
     border: none;
@@ -77,8 +56,8 @@ export const GlobalStyle = createGlobalStyle`
       flex-direction: column;
       min-height: calc(100vh + 10rem);
     }
-.AppBody{
-flex: 1;
-}
+    .AppBody{
+      flex: 1;
+    }
   } 
 `;

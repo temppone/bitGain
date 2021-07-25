@@ -12,7 +12,7 @@ import Button from '../Button';
 import { defaultTheme } from '../../styles/theme';
 
 const SignIn = () => {
-    const { login } = useFirebaseContext();
+    const { login, isLogged } = useFirebaseContext();
 
     type SignInTypes = {
         email: string;
@@ -38,6 +38,7 @@ const SignIn = () => {
             success: 'Logado',
             error: 'Algo deu errado',
         });
+        console.log(isLogged);
     };
 
     return (

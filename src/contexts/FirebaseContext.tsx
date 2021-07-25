@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -19,6 +19,7 @@ type FirebaseContextType = {
     login: (params: { email: string; password: string }) => any;
     createUser: (params: { email: string; password: string }) => any;
     logout: () => void;
+    isLogged: boolean;
 };
 
 const FirebaseContext = createContext<FirebaseContextType>({} as FirebaseContextType);
@@ -26,8 +27,11 @@ const FirebaseContext = createContext<FirebaseContextType>({} as FirebaseContext
 export const useFirebaseContext = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }: any) => {
+    const [isLogged, setIsLogged] = useState(false);
+
     const login = async ({ email, password }: { email: string; password: string }) => {
         await firebase.auth().signInWithEmailAndPassword(email, password);
+        setIsLogged(true);
     };
 
     const createUser = async ({ email, password }: { email: string; password: string }) => {
@@ -42,7 +46,9 @@ export const FirebaseProvider = ({ children }: any) => {
     };
 
     return (
-        <FirebaseContext.Provider value={{ firebase: firebase.app(), login, createUser, logout }}>
+        <FirebaseContext.Provider
+            value={{ firebase: firebase.app(), login, createUser, logout, isLogged }}
+        >
             {children}
         </FirebaseContext.Provider>
     );

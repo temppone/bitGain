@@ -6,15 +6,17 @@ import { GlobalStyle } from './styles/global';
 import { defaultTheme } from './styles/theme';
 import { FirebaseProvider } from './contexts/FirebaseContext';
 import Footer from './components/Footer';
+import Loading from './components/Loading';
 
 const Home = lazy(() => import('./pages/Home'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
+const NotFound = lazy(() => import('./components/NotFound'));
 
 const App = (): JSX.Element => (
     <div className='App'>
         <FirebaseProvider>
-            <Suspense fallback={<div>Carregando</div>}>
-                <ThemeProvider theme={defaultTheme}>
+            <ThemeProvider theme={defaultTheme}>
+                <Suspense fallback={<Loading />}>
                     <Toaster />
                     <GlobalStyle />
                     <main className='AppBody'>
@@ -26,12 +28,15 @@ const App = (): JSX.Element => (
                                 <Route exact path='/dashboard'>
                                     <Dashboard />
                                 </Route>
+                                <Route path='*'>
+                                    <NotFound />
+                                </Route>
                             </Switch>
+                            <Footer />
                         </Router>
                     </main>
-                    <Footer />
-                </ThemeProvider>
-            </Suspense>
+                </Suspense>
+            </ThemeProvider>
         </FirebaseProvider>
     </div>
 );

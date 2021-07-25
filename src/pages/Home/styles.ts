@@ -6,6 +6,25 @@ export const HomeContainer = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 2rem 1rem;
+    div {
+        animation: slideOpacity 0.5s;
+    }
+
+    @keyframes slideOpacity {
+        from {
+            opacity: 0;
+            bottom: -5.2rem;
+        }
+
+        to {
+            opacity: 1;
+            bottom: -1.2rem;
+        }
+    }
+
+    ul {
+        list-style: none;
+    }
 `;
 
 export const HomeIntro = styled.div`
