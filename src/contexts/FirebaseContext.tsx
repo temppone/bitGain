@@ -20,6 +20,8 @@ type FirebaseContextType = {
     createUser: (params: { email: string; password: string }) => any;
     logout: () => void;
     isLogged: boolean;
+    errorMessage: string;
+    disabledButton: boolean;
 };
 
 const FirebaseContext = createContext<FirebaseContextType>({} as FirebaseContextType);
@@ -28,10 +30,20 @@ export const useFirebaseContext = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }: any) => {
     const [isLogged, setIsLogged] = useState(false);
+    const [disabledButton, setDisabledButton] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const login = async ({ email, password }: { email: string; password: string }) => {
-        await firebase.auth().signInWithEmailAndPassword(email, password);
-        setIsLogged(true);
+        try {
+            setDisabledButton(true);
+            await firebase.auth().signInWithEmailAndPassword(email, password);
+            setIsLogged(true);
+        } catch (err) {
+            setDisabledButton(false);
+            setErrorMessage(err);
+        } finally {
+            setDisabledButton(false);
+        }
     };
 
     const createUser = async ({ email, password }: { email: string; password: string }) => {
@@ -47,7 +59,15 @@ export const FirebaseProvider = ({ children }: any) => {
 
     return (
         <FirebaseContext.Provider
-            value={{ firebase: firebase.app(), login, createUser, logout, isLogged }}
+            value={{
+                firebase: firebase.app(),
+                login,
+                createUser,
+                logout,
+                isLogged,
+                errorMessage,
+                disabledButton,
+            }}
         >
             {children}
         </FirebaseContext.Provider>
