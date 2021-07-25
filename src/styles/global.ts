@@ -9,6 +9,23 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     
   }
+
+  div {
+        animation: slideOpacity 0.5s;
+    }
+
+    @keyframes slideOpacity {
+        from {
+            opacity: 0;
+            bottom: -5.2rem;
+        }
+
+        to {
+            opacity: 1;
+            bottom: -1.2rem;
+        }
+    }
+    
   ul{
     list-style: none;
   }

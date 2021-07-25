@@ -7,7 +7,7 @@ type HeadProps = {
 
 const Head = ({ title = '', description = '' }: HeadProps) => {
     useEffect(() => {
-        document.title = `${title} | Useeers`;
+        document.title = `${title} | BitGain`;
         document
             ?.querySelector("meta[name='description']")
             ?.setAttribute('content', description || '');

@@ -6,19 +6,6 @@ export const HomeContainer = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 2rem 1rem;
-
-    div {
-        animation: fadeIn 0.4s;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
 `;
 
 export const HomeIntro = styled.div`
