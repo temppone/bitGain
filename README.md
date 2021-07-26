@@ -1,3 +1,3 @@
-# Carteira BitGain
+# BitGain
 
 Carteira de bitcoin
