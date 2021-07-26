@@ -13,7 +13,7 @@ import {
 
 type CardTypes = {
     fieldName?: string;
-    cardCoinValue: string | void;
+    cardCoinValue: string;
     background: string;
     secundaryField?: {
         secundaryFieldName?: string;

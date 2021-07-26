@@ -33,6 +33,7 @@ export const FirebaseProvider = ({ children }: any) => {
 
     const login = async ({ email, password }: { email: string; password: string }) => {
         const credencial = await firebase.auth().signInWithEmailAndPassword(email, password);
+        console.log(credencial.user?.getIdTokenResult());
         saveUser({
             email: credencial.user?.email,
             wallet: {

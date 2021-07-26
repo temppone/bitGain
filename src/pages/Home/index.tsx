@@ -27,7 +27,7 @@ const Home = () => {
 
     return (
         <HomeContainer>
-            <Head title='BitGain' description='Essa é a tela inícial da BitGain' />
+            <Head title='Home' description='Essa é a tela inícial da BitGain' />
             {!homeIntro && (
                 <HomeBackButton
                     onClick={() => {

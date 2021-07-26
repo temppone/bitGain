@@ -6,18 +6,11 @@ import { useFirebaseContext } from '../../contexts/FirebaseContext';
 import Card from '../../components/Card';
 import { useDataContext } from '../../contexts/DataContext';
 import { defaultTheme } from '../../styles/theme';
+import { toBtc, toReal } from '../../core/parsers/NumberParses';
 
 const Dashboard = () => {
     const { logout } = useFirebaseContext();
     const { currentUser } = useDataContext();
-
-    const toReal = (rawNumber: number) => {
-        new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'XBT' }).format(rawNumber);
-    };
-
-    const toBtc = (rawNumber: number) => {
-        new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'BRL' }).format(rawNumber);
-    };
 
     return (
         <DashboardContainer>
