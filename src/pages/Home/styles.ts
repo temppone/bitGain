@@ -7,7 +7,7 @@ export const HomeContainer = styled.div`
     align-items: center;
     padding: 2rem 1rem;
     div {
-        animation: slideOpacity 0.5s;
+        animation: slideOpacity 0.6s;
     }
 
     @keyframes slideOpacity {

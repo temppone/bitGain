@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import { createContext, useContext, useState } from 'react';
+import { useDataContext } from './DataContext';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -28,9 +29,20 @@ export const useFirebaseContext = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }: any) => {
     const [isLogged, setIsLogged] = useState(false);
+    const { saveUser, getUserById } = useDataContext();
 
     const login = async ({ email, password }: { email: string; password: string }) => {
-        await firebase.auth().signInWithEmailAndPassword(email, password);
+        const credencial = await firebase.auth().signInWithEmailAndPassword(email, password);
+        saveUser({
+            email: credencial.user?.email,
+            wallet: {
+                real: 100000,
+                bitcoin: 0,
+                brita: 0,
+            },
+            isFirstTimeLogged: getUserById(credencial.user?.email!) === null,
+        });
+
         setIsLogged(true);
     };
 
@@ -44,6 +56,7 @@ export const FirebaseProvider = ({ children }: any) => {
 
     const logout = () => {
         firebase.auth().signOut();
+        setIsLogged(false);
     };
 
     return (

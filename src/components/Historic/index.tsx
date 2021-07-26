@@ -5,6 +5,7 @@ import {
     HistoricItem,
     HistoricItemContent,
     HistoricDate,
+    HistoricPrice,
 } from './styles';
 
 const Historic = () => (
@@ -14,7 +15,10 @@ const Historic = () => (
                 <Redo />
             </HistoricIcon>
             <HistoricItem>
-                <HistoricItemContent>Compra de brita 25 britas</HistoricItemContent>
+                <HistoricItemContent>
+                    Compra de
+                    <HistoricPrice> BRI 25</HistoricPrice>
+                </HistoricItemContent>
             </HistoricItem>
             <HistoricDate>25 mai 2021</HistoricDate>
         </HistoricContainer>
@@ -23,7 +27,10 @@ const Historic = () => (
                 <Undo />
             </HistoricIcon>
             <HistoricItem>
-                <HistoricItemContent>Compra de brita 25 britas</HistoricItemContent>
+                <HistoricItemContent>
+                    Compra de
+                    <HistoricPrice> BRI 25</HistoricPrice>
+                </HistoricItemContent>
             </HistoricItem>
             <HistoricDate>25 mai 2021</HistoricDate>
         </HistoricContainer>
@@ -32,7 +39,10 @@ const Historic = () => (
                 <Undo />
             </HistoricIcon>
             <HistoricItem>
-                <HistoricItemContent>Compra de brita 25 britas</HistoricItemContent>
+                <HistoricItemContent>
+                    Compra de
+                    <HistoricPrice> BRI 25</HistoricPrice>
+                </HistoricItemContent>
             </HistoricItem>
             <HistoricDate>25 mai 2021</HistoricDate>
         </HistoricContainer>
@@ -41,7 +51,10 @@ const Historic = () => (
                 <Sync />
             </HistoricIcon>
             <HistoricItem>
-                <HistoricItemContent>Compra de brita 25 britas</HistoricItemContent>
+                <HistoricItemContent>
+                    Compra de
+                    <HistoricPrice> BRI 25</HistoricPrice>
+                </HistoricItemContent>
             </HistoricItem>
             <HistoricDate>25 mai 2021</HistoricDate>
         </HistoricContainer>
@@ -50,7 +63,10 @@ const Historic = () => (
                 <Sync />
             </HistoricIcon>
             <HistoricItem>
-                <HistoricItemContent>Compra de brita 25 britas</HistoricItemContent>
+                <HistoricItemContent>
+                    Compra de
+                    <HistoricPrice> BRI 25</HistoricPrice>
+                </HistoricItemContent>
             </HistoricItem>
             <HistoricDate>25 mai 2021</HistoricDate>
         </HistoricContainer>
@@ -59,7 +75,10 @@ const Historic = () => (
                 <Undo />
             </HistoricIcon>
             <HistoricItem>
-                <HistoricItemContent>Compra de brita 25 britas</HistoricItemContent>
+                <HistoricItemContent>
+                    Compra de
+                    <HistoricPrice> BRI 25</HistoricPrice>
+                </HistoricItemContent>
             </HistoricItem>
             <HistoricDate>25 mai 2021</HistoricDate>
         </HistoricContainer>
@@ -68,7 +87,10 @@ const Historic = () => (
                 <Undo />
             </HistoricIcon>
             <HistoricItem>
-                <HistoricItemContent>Compra de brita 25 britas</HistoricItemContent>
+                <HistoricItemContent>
+                    Compra de
+                    <HistoricPrice> BRI 25</HistoricPrice>
+                </HistoricItemContent>
             </HistoricItem>
             <HistoricDate>25 mai 2021</HistoricDate>
         </HistoricContainer>
@@ -77,7 +99,10 @@ const Historic = () => (
                 <Undo />
             </HistoricIcon>
             <HistoricItem>
-                <HistoricItemContent>Compra de brita 25 britas</HistoricItemContent>
+                <HistoricItemContent>
+                    Compra de
+                    <HistoricPrice> BRI 25</HistoricPrice>
+                </HistoricItemContent>
             </HistoricItem>
             <HistoricDate>25 mai 2021</HistoricDate>
         </HistoricContainer>
@@ -86,7 +111,10 @@ const Historic = () => (
                 <Undo />
             </HistoricIcon>
             <HistoricItem>
-                <HistoricItemContent>Compra de brita 25 britas</HistoricItemContent>
+                <HistoricItemContent>
+                    Compra de
+                    <HistoricPrice> BRI 25</HistoricPrice>
+                </HistoricItemContent>
             </HistoricItem>
             <HistoricDate>25 mai 2021</HistoricDate>
         </HistoricContainer>

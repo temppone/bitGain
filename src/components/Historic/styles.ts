@@ -23,8 +23,13 @@ export const HistoricItemContent = styled.p`
     font-size: 1rem;
 `;
 
+export const HistoricPrice = styled.span`
+    font-weight: bold;
+    font-size: 1.1rem;
+`;
+
 export const HistoricDate = styled.p`
     font-size: 1.2rem;
-    width: 10%;
     text-align: center;
+    font-weight: 700;
 `;
