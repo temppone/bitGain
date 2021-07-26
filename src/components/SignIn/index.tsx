@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Redirect } from 'react-router-dom';
+import { useState } from 'react';
 import { ptShort } from 'yup-locale-pt';
 import * as yup from 'yup';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
@@ -13,7 +14,8 @@ import Button from '../Button';
 import { defaultTheme } from '../../styles/theme';
 
 const SignIn = () => {
-    const { login, disabledButton, isLogged } = useFirebaseContext();
+    const { login, isLogged } = useFirebaseContext();
+    const [disabledButton, setDisabledButton] = useState(false);
 
     type SignInTypes = {
         email: string;
@@ -34,17 +36,20 @@ const SignIn = () => {
     } = useForm<SignInTypes>({ resolver: yupResolver(schema) });
 
     const SignInSubmit: SubmitHandler<SignInTypes> = (data) => {
+        setDisabledButton(true);
         toast.promise(login(data), {
-            loading: 'Carregando',
+            loading: 'Logando',
             success: 'Logado',
-            error: 'Algo deu errado',
+            error: () => {
+                setDisabledButton(false);
+                return 'Algo deu errado';
+            },
         });
     };
 
     return (
         <SignInContainer>
             {isLogged ? <Redirect to='/dashboard' /> : null}
-
             <PageTitle title='Olá de novo!' salutation='Digite seu email e senha' />
             <SignInForm action='' onSubmit={handleSubmit(SignInSubmit)}>
                 <Controller

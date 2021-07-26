@@ -1,5 +1,5 @@
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-
+import { Link } from 'react-router-dom';
 import {
     DashboardTitle,
     DashboardContainer,
@@ -13,9 +13,12 @@ import {
 } from './styles';
 
 import { defaultTheme } from '../../styles/theme';
+import Head from '../../components/Head';
+import Historic from '../../components/Historic';
 
 const Dashboard = () => (
     <DashboardContainer>
+        <Head title='Dashboard' description='Carteira da BitGain' />
         <DashboardTitle>Olá!</DashboardTitle>
         <DashboardCard background={defaultTheme.palette.secundaryContrast}>
             <DashboardCardBox>
@@ -35,30 +38,35 @@ const Dashboard = () => (
         </DashboardCard>
 
         <DashboardCard background={defaultTheme.palette.secundaryDark}>
-            <DashboardCardSecundaryBox>
-                <DashboardCardBox>
-                    <DashboardCardTitle>Bitcoin</DashboardCardTitle>
-                    <DashboardCardValue>BTC 1.679,65</DashboardCardValue>
-                </DashboardCardBox>
-                <DashboardCardPercent>
-                    +26%
-                    <TrendingUpIcon htmlColor={defaultTheme.palette.success} />
-                </DashboardCardPercent>
-            </DashboardCardSecundaryBox>
+            <Link to='/bitcoin'>
+                <DashboardCardSecundaryBox>
+                    <DashboardCardBox>
+                        <DashboardCardTitle>Bitcoin</DashboardCardTitle>
+                        <DashboardCardValue>BTC 1.679,65</DashboardCardValue>
+                    </DashboardCardBox>
+                    <DashboardCardPercent>
+                        +26%
+                        <TrendingUpIcon htmlColor={defaultTheme.palette.success} />
+                    </DashboardCardPercent>
+                </DashboardCardSecundaryBox>
+            </Link>
         </DashboardCard>
 
         <DashboardCard background={defaultTheme.palette.secundaryDark}>
-            <DashboardCardSecundaryBox>
-                <DashboardCardBox>
-                    <DashboardCardTitle>Total</DashboardCardTitle>
-                    <DashboardCardValue>BRI 34.679,65</DashboardCardValue>
-                </DashboardCardBox>
-                <DashboardCardPercent>
-                    +32%
-                    <TrendingUpIcon htmlColor={defaultTheme.palette.success} />
-                </DashboardCardPercent>
-            </DashboardCardSecundaryBox>
+            <Link to='/brita'>
+                <DashboardCardSecundaryBox>
+                    <DashboardCardBox>
+                        <DashboardCardTitle>Brita</DashboardCardTitle>
+                        <DashboardCardValue>BRI 34.679,65</DashboardCardValue>
+                    </DashboardCardBox>
+                    <DashboardCardPercent>
+                        +32%
+                        <TrendingUpIcon htmlColor={defaultTheme.palette.success} />
+                    </DashboardCardPercent>
+                </DashboardCardSecundaryBox>
+            </Link>
         </DashboardCard>
+        <Historic />
     </DashboardContainer>
 );
 

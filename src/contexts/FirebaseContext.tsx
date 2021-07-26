@@ -20,8 +20,6 @@ type FirebaseContextType = {
     createUser: (params: { email: string; password: string }) => any;
     logout: () => void;
     isLogged: boolean;
-    errorMessage: string;
-    disabledButton: boolean;
 };
 
 const FirebaseContext = createContext<FirebaseContextType>({} as FirebaseContextType);
@@ -30,20 +28,10 @@ export const useFirebaseContext = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }: any) => {
     const [isLogged, setIsLogged] = useState(false);
-    const [disabledButton, setDisabledButton] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
 
     const login = async ({ email, password }: { email: string; password: string }) => {
-        try {
-            setDisabledButton(true);
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-            setIsLogged(true);
-        } catch (err) {
-            setDisabledButton(false);
-            setErrorMessage(err);
-        } finally {
-            setDisabledButton(false);
-        }
+        await firebase.auth().signInWithEmailAndPassword(email, password);
+        setIsLogged(true);
     };
 
     const createUser = async ({ email, password }: { email: string; password: string }) => {
@@ -51,6 +39,7 @@ export const FirebaseProvider = ({ children }: any) => {
             .auth()
             .createUserWithEmailAndPassword(email, password)
             .then((credencial) => credencial);
+        setIsLogged(true);
     };
 
     const logout = () => {
@@ -65,8 +54,6 @@ export const FirebaseProvider = ({ children }: any) => {
                 createUser,
                 logout,
                 isLogged,
-                errorMessage,
-                disabledButton,
             }}
         >
             {children}

@@ -27,8 +27,9 @@ export const DashboardContainer = styled.div`
         }
     }
 
-    ul {
-        list-style: none;
+    a {
+        width: 100%;
+        margin: 0 auto;
     }
 
     @media (min-width: ${({ theme }) => theme.breakpoints.xs}) {
@@ -72,7 +73,7 @@ export const DashboardCard = styled.div<DashboardStylesType>`
 export const DashboardCardBox = styled.div`
     display: flex;
     flex-direction: column;
-    padding-bottom: 1rem;
+    padding: 0.5rem;
 `;
 
 export const DashboardCardSecundaryBox = styled.div`

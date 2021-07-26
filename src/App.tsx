@@ -7,6 +7,7 @@ import { defaultTheme } from './styles/theme';
 import { FirebaseProvider } from './contexts/FirebaseContext';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const Home = lazy(() => import('./pages/Home'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
@@ -25,9 +26,9 @@ const App = (): JSX.Element => (
                                 <Route exact path='/'>
                                     <Home />
                                 </Route>
-                                <Route exact path='/dashboard'>
+                                <ProtectedRoute path='/dashboard'>
                                     <Dashboard />
-                                </Route>
+                                </ProtectedRoute>
                                 <Route path='*'>
                                     <NotFound />
                                 </Route>

@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as yup from 'yup';
@@ -11,7 +13,8 @@ import PageTitle from '../PageTitle';
 import { SignUpContainer, SignUpForm } from './styles';
 
 const SignUp = () => {
-    const { createUser } = useFirebaseContext();
+    const { createUser, isLogged } = useFirebaseContext();
+    const [disabledButton, setDisabledButton] = useState(false);
 
     type CreateUserType = {
         email: string;
@@ -33,17 +36,21 @@ const SignUp = () => {
     });
 
     const signUpSubmit: SubmitHandler<CreateUserType> = (data) => {
+        setDisabledButton(true);
         toast.promise(createUser(data), {
             loading: 'Carregando',
-            success: 'Usuário criado',
-            error: 'Algo deu errado',
+            success: 'Logado',
+            error: () => {
+                setDisabledButton(false);
+                return 'Algo deu errado';
+            },
         });
     };
 
     return (
         <SignUpContainer>
             <PageTitle title='Cadastre-se' salutation='Preencha os campos' />
-
+            {isLogged && <Redirect to='/dashboard' />}
             <SignUpForm action='' onSubmit={handleSubmit(signUpSubmit)}>
                 <Controller
                     name='email'
@@ -89,6 +96,7 @@ const SignUp = () => {
                     color={defaultTheme.palette.primaryDark}
                     name='Cadastrar'
                     width='100%'
+                    disabled={disabledButton}
                 />
             </SignUpForm>
         </SignUpContainer>
