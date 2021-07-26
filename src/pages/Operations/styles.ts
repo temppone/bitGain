@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DashboardContainer = styled.div`
+export const OperationsContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,21 +46,4 @@ export const DashboardContainer = styled.div`
         max-width: 1380px;
         margin: 0 auto;
     }
-`;
-
-export const DashboardHeader = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-`;
-
-export const LogoutButton = styled.div`
-    width: auto;
-    padding: 1rem;
-`;
-
-export const DashboardTitle = styled.h1`
-    padding: 1rem;
 `;

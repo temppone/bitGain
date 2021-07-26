@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DashboardContainer, DashboardHeader, DashboardTitle } from './styles';
+import { DashboardContainer, DashboardHeader, DashboardTitle, LogoutButton } from './styles';
 import Historic from '../../components/Historic';
 import Head from '../../components/Head';
 import CardContainer from '../../components/Card';
@@ -11,12 +11,16 @@ const Dashboard = () => {
         <DashboardContainer>
             <DashboardHeader>
                 <DashboardTitle>Olá de novo!</DashboardTitle>
-                <Link
-                    onClick={() => {
-                        logout();
-                    }}
-                    to='/'
-                />
+                <LogoutButton>
+                    <Link
+                        onClick={() => {
+                            logout();
+                        }}
+                        to='/'
+                    >
+                        Logout
+                    </Link>
+                </LogoutButton>
             </DashboardHeader>
             <Head title='Dashboard' description='Carteira da BitGain' />
             <CardContainer />

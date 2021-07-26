@@ -13,6 +13,7 @@ import { DataProvider } from './contexts/DataContext';
 const Home = lazy(() => import('./pages/Home'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const NotFound = lazy(() => import('./components/NotFound'));
+const Operations = lazy(() => import('./pages/Operations'));
 
 const App = (): JSX.Element => (
     <div className='App'>
@@ -30,6 +31,9 @@ const App = (): JSX.Element => (
                                     </Route>
                                     <ProtectedRoute path='/dashboard'>
                                         <Dashboard />
+                                    </ProtectedRoute>
+                                    <ProtectedRoute path='/operations:id'>
+                                        <Operations />
                                     </ProtectedRoute>
                                     <Route path='*'>
                                         <NotFound />
