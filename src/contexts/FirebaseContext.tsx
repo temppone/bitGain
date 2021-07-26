@@ -29,7 +29,7 @@ export const useFirebaseContext = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }: any) => {
     const [isLogged, setIsLogged] = useState(false);
-    const { saveUser, getUserById } = useDataContext();
+    const { saveUser, getUserById, currentUser } = useDataContext();
 
     const login = async ({ email, password }: { email: string; password: string }) => {
         const credencial = await firebase.auth().signInWithEmailAndPassword(email, password);
@@ -57,6 +57,7 @@ export const FirebaseProvider = ({ children }: any) => {
     const logout = () => {
         firebase.auth().signOut();
         setIsLogged(false);
+        window.localStorage.removeItem(`user:${currentUser.email}`);
     };
 
     return (
