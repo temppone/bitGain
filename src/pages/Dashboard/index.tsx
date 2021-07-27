@@ -19,7 +19,7 @@ const Dashboard = () => {
                 <DashboardTitle>Olá de novo!</DashboardTitle>
                 <LogoutButton>
                     <Link onClick={() => logout()} to='/'>
-                        Logout
+                        Sair
                     </Link>
                 </LogoutButton>
             </DashboardHeader>

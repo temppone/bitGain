@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useEffect, useContext, useState } from 'react';
 import { useDataContext } from './DataContext';
 
 const firebaseConfig = {
@@ -29,11 +29,24 @@ export const useFirebaseContext = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }: any) => {
     const [isLogged, setIsLogged] = useState(false);
-    const { saveUser, getUserById, currentUser } = useDataContext();
+    const { saveUser, getUserById, currentUser, setCurrentUser } = useDataContext();
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                const savedUser = getUserById(user.email as string);
+
+                if (savedUser) {
+                    setCurrentUser(savedUser);
+                    setIsLogged(true);
+                }
+            }
+        });
+    }, []);
 
     const login = async ({ email, password }: { email: string; password: string }) => {
+        await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
         const credencial = await firebase.auth().signInWithEmailAndPassword(email, password);
-        console.log(credencial.user?.getIdTokenResult());
         saveUser({
             email: credencial.user?.email,
             wallet: {

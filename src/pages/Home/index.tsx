@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
     HomeContainer,
     HomeIntro,
@@ -14,10 +15,20 @@ import SignUp from '../../components/SignUp';
 import SignIn from '../../components/SignIn';
 import { defaultTheme } from '../../styles/theme';
 import Head from '../../components/Head';
+import { useFirebaseContext } from '../../contexts/FirebaseContext';
 
 const Home = () => {
     const [divToRender, setDivToRender] = useState<'signIn' | 'signUp' | 'none'>('none');
     const [homeIntro, setHomeIntro] = useState(true);
+
+    const { isLogged } = useFirebaseContext();
+    const history = useHistory();
+
+    useEffect(() => {
+        if (isLogged) {
+            history.push('/dashboard');
+        }
+    }, [isLogged]);
 
     const divs = {
         signIn: <SignIn />,

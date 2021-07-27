@@ -1,17 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Redirect } from 'react-router-dom';
-import { useState } from 'react';
-import { ptShort } from 'yup-locale-pt';
-import * as yup from 'yup';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { SignInContainer, SignInForm } from './styles';
+import { Redirect } from 'react-router-dom';
+import * as yup from 'yup';
+import { ptShort } from 'yup-locale-pt';
 import { useFirebaseContext } from '../../contexts/FirebaseContext';
+import { defaultTheme } from '../../styles/theme';
+import Button from '../Button';
 import Input from '../Input';
 import PageTitle from '../PageTitle';
-import Button from '../Button';
-import { defaultTheme } from '../../styles/theme';
+import { SignInContainer, SignInForm } from './styles';
 
 const SignIn = () => {
     const { login, isLogged } = useFirebaseContext();

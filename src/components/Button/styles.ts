@@ -7,6 +7,14 @@ export const ButtonBox = styled.button`
     background-color: ${({ theme }) => theme.palette.contrast};
     color: ${({ theme }) => theme.palette.primaryLight};
 
+    @media (min-width: ${({ theme }) => theme.breakpoints.xs}) {
+        max-width: 100%;
+    }
+    @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+        max-width: 50%;
+        margin: 0 auto;
+    }
+
     :hover,
     :focus {
         box-shadow: 0 0 0 1px ${({ theme }) => theme.palette.secundaryLight};
