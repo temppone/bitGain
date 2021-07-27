@@ -7,10 +7,16 @@ import Card from '../../components/Card';
 import { useDataContext } from '../../contexts/DataContext';
 import { defaultTheme } from '../../styles/theme';
 import { toBtc, toReal } from '../../core/parsers/NumberParses';
+import { getToday, getYesterday } from '../../core/parsers/DateParses';
 
 const Dashboard = () => {
     const { logout } = useFirebaseContext();
-    const { currentUser } = useDataContext();
+    const { currentUser, getBritaValue } = useDataContext();
+
+    console.log(getBritaValue(getToday()));
+    console.log(getBritaValue(getYesterday()));
+    console.log(getToday());
+    console.log(getYesterday());
 
     return (
         <DashboardContainer>

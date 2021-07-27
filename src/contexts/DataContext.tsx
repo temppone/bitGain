@@ -1,11 +1,13 @@
 import { createContext, useContext, useState } from 'react';
 import User from '../models/user-model';
+import { BRITA_VALUE_GET } from '../services/api/api';
 
 type DataContextType = {
     saveUser: (user: User) => void;
     getUserById: (email: string) => User | null;
     currentUser: User;
     setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
+    getBritaValue: (date: string) => Promise<Response>;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -29,8 +31,17 @@ export const DataProvider = ({ children }: any) => {
         return JSON.parse(user) as User;
     };
 
+    const getBritaValue = async (date: string) => {
+        const { url, options } = await BRITA_VALUE_GET(date);
+        const response = await fetch(url, options);
+
+        return response;
+    };
+
     return (
-        <DataContext.Provider value={{ saveUser, getUserById, currentUser, setCurrentUser }}>
+        <DataContext.Provider
+            value={{ saveUser, getUserById, currentUser, setCurrentUser, getBritaValue }}
+        >
             {children}
         </DataContext.Provider>
     );
