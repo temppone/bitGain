@@ -2,6 +2,7 @@
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import { defaultTheme } from '../../styles/theme';
 import {
+    LinkCard,
     CardContainer,
     CardBox,
     CardSecundaryBox,
@@ -19,10 +20,11 @@ type CardTypes = {
         secundaryFieldName?: string;
         secundaryFieldCoinValue?: string;
     };
+    id?: string;
 };
 
-const Card = ({ fieldName, cardCoinValue, background, secundaryField }: CardTypes) => (
-    <>
+const Card = ({ fieldName, cardCoinValue, background, secundaryField, id = '/' }: CardTypes) => (
+    <LinkCard to={id}>
         <CardContainer background={background}>
             <CardBox>
                 <CardTitle>{fieldName}</CardTitle>
@@ -41,7 +43,7 @@ const Card = ({ fieldName, cardCoinValue, background, secundaryField }: CardType
                 </CardPercent>
             </CardSecundaryBox>
         </CardContainer>
-    </>
+    </LinkCard>
 );
 
 export default Card;

@@ -1,8 +1,14 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type DashboardStylesType = {
     background: string;
 };
+
+export const LinkCard = styled(Link)`
+    display: flex;
+    justify-content: center;
+`;
 
 export const CardContainer = styled.div<DashboardStylesType>`
     display: flex;

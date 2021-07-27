@@ -16,6 +16,10 @@ declare module 'styled-components' {
 
             warning: string;
             success: string;
+
+            gradientBlue: string;
+            gradientSecundaryBlue: string;
+            gradientGrey: string;
         };
         breakpoints: {
             xs: string;

@@ -25,17 +25,20 @@ const Dashboard = () => {
             </DashboardHeader>
 
             <Card
-                background={defaultTheme.palette.secundaryContrast}
+                background={defaultTheme.palette.gradientBlue}
                 cardCoinValue={toReal(currentUser.wallet.real)}
                 secundaryField={{ secundaryFieldName: 'Alo', secundaryFieldCoinValue: '291839328' }}
+                id='/operations:real'
             />
             <Card
-                background={defaultTheme.palette.secundaryDark}
+                background={defaultTheme.palette.gradientGrey}
                 cardCoinValue={toBtc(currentUser.wallet.bitcoin)}
+                id='/operations:real'
             />
             <Card
-                background={defaultTheme.palette.secundaryDark}
+                background={defaultTheme.palette.gradientGrey}
                 cardCoinValue={currentUser.wallet.real.toString()}
+                id='/operations:real'
             />
             <Historic />
         </DashboardContainer>

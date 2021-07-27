@@ -15,6 +15,10 @@ export const defaultTheme: DefaultTheme = {
 
         warning: '#F64B4C',
         success: '#BFFFC9',
+
+        gradientBlue: 'linear-gradient(to right, #2a7ccb, #2177cb, #1772ca, #0b6cc9, #0067c8);',
+        gradientSecundaryBlue: 'linear-gradient(100.18deg, #0060B8 13.18%, #1F2349 79.2%);',
+        gradientGrey: 'linear-gradient(91.37deg, #1B242B 7.14%, rgba(27, 36, 43, 0.5) 99.52%);',
     },
 
     breakpoints: {
