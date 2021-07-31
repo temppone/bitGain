@@ -13,7 +13,6 @@ const Dashboard = () => {
     const { logout } = useFirebaseContext();
     const { currentUser, getBritaValue } = useDataContext();
 
-    console.log(getBritaValue(getToday()));
     console.log(getBritaValue(getYesterday()));
     console.log(getToday());
     console.log(getYesterday());

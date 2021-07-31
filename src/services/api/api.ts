@@ -1,24 +1,14 @@
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable prettier/prettier */
-
-import { URLSearchParams } from 'url';
-
 /* eslint-disable operator-linebreak */
 export const apiBrita =
-    'https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata//CotacaoDolarDia(dataCotacao=@dataCotacao)';
+    'https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?%40dataCotacao=';
 
+// eslint-disable-next-line arrow-body-style
 export const BRITA_VALUE_GET = (date: string) => {
-    const teste = new URLSearchParams();
-    teste.append('datacotacao', date);
-
     return {
-        url: `${apiBrita}${teste.toString()}`,
+        url: `${apiBrita}${date}&%24format=json`,
 
         options: {
             method: 'GET',
-            Headers: {
-                accept: 'application/json; odata.metadata=minimal',
-            },
         },
     };
 };

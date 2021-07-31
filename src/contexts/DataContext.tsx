@@ -34,7 +34,7 @@ export const DataProvider = ({ children }: any) => {
     const getBritaValue = async (date: string) => {
         const { url, options } = await BRITA_VALUE_GET(date);
         const response = await fetch(url, options);
-
+        console.log(response);
         return response;
     };
 

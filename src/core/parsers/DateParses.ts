@@ -9,5 +9,16 @@ export const getYesterday = () => {
 
     yesterday.setDate(yesterday.getDate() - 1);
     const yesterdayInDateFormat = new Date(yesterday);
-    return `${yesterdayInDateFormat.getMonth()}/${yesterdayInDateFormat.getDate()}/${yesterdayInDateFormat.getFullYear()}`;
+
+    const padLeft = (num: any, length = 2, char = '0') =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        (
+            Array.from({ length })
+                .map(() => char)
+                .join('') + num
+        ).slice(-length);
+
+    return `'${padLeft(yesterdayInDateFormat.getMonth())}%2F${padLeft(
+        yesterdayInDateFormat.getDate(),
+    )}%2F${yesterdayInDateFormat.getFullYear()}'`;
 };
