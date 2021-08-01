@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import { defaultTheme } from '../../styles/theme';
+// import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+// import { defaultTheme } from '../../styles/theme';
 import {
     LinkCard,
     CardContainer,
@@ -9,7 +9,7 @@ import {
     CardTitle,
     CardValue,
     CardSecundaryValue,
-    CardPercent,
+    // CardPercent,
 } from './styles';
 
 type CardTypes = {
@@ -21,9 +21,19 @@ type CardTypes = {
         secundaryFieldCoinValue?: string;
     };
     id?: string;
+    // britaTodayValue?: number;
+    // britaYesterdayValue?: number;
 };
 
-const Card = ({ fieldName, cardCoinValue, background, secundaryField, id = '/' }: CardTypes) => (
+const Card = ({
+    fieldName,
+    cardCoinValue,
+    background,
+    secundaryField,
+    id = '/',
+}: // britaTodayValue,
+// britaYesterdayValue,
+CardTypes) => (
     <LinkCard to={id}>
         <CardContainer background={background}>
             <CardBox>
@@ -37,10 +47,16 @@ const Card = ({ fieldName, cardCoinValue, background, secundaryField, id = '/' }
                         {secundaryField?.secundaryFieldCoinValue}
                     </CardSecundaryValue>
                 </CardBox>
-                <CardPercent>
+                {/* <CardPercent>
                     +14%
-                    <TrendingUpIcon htmlColor={defaultTheme.palette.success} />
-                </CardPercent>
+                    <TrendingUpIcon
+                        htmlColor={
+                            britaTodayValue > britaYesterdayValue
+                                ? defaultTheme.palette.success
+                                : defaultTheme.palette.warning
+                        }
+                    />
+                </CardPercent> */}
             </CardSecundaryBox>
         </CardContainer>
     </LinkCard>

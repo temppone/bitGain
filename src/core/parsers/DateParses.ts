@@ -9,7 +9,7 @@ const padLeft = (num: any, length = 2, char = '0') =>
 export const getToday = () => {
     const today = new Date();
 
-    return `'${padLeft(today.getMonth())}%2F${padLeft(today.getDate())}%2F${today.getFullYear()}'`;
+    return `'${padLeft(today.getMonth())}-${padLeft(today.getDate())}-${today.getFullYear()}'`;
 };
 
 export const getYesterday = () => {
@@ -19,7 +19,9 @@ export const getYesterday = () => {
     yesterday.setDate(yesterday.getDate() - 1);
     const yesterdayInDateFormat = new Date(yesterday);
 
-    return `'${padLeft(yesterdayInDateFormat.getMonth())}%2F${padLeft(
-        yesterdayInDateFormat.getDate(),
-    )}%2F${yesterdayInDateFormat.getFullYear()}'`;
+    const formatedMonth = padLeft(yesterdayInDateFormat.getMonth());
+    const formatedDate = padLeft(yesterdayInDateFormat.getDate());
+    const formatedFullYear = yesterdayInDateFormat.getFullYear();
+
+    return `'${formatedMonth}-${formatedDate}-${formatedFullYear}'`;
 };

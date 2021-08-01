@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import axios from 'axios';
 import { createContext, useContext, useState } from 'react';
 import User from '../models/user-model';
 import { BRITA_VALUE_GET } from '../services/api/api';
@@ -8,7 +8,7 @@ type DataContextType = {
     getUserById: (email: string) => User | null;
     currentUser: User;
     setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
-    getBritaValue: (date: string) => Promise<Response>;
+    getBritaValue: any;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -33,9 +33,8 @@ export const DataProvider = ({ children }: any) => {
     };
 
     const getBritaValue = async (date: string) => {
-        const { url, options } = BRITA_VALUE_GET(date);
-        const response = await fetch(url, options);
-        console.log(response);
+        const { url, params } = BRITA_VALUE_GET(date);
+        const response = await axios.get(url, { params });
         return response;
     };
 
