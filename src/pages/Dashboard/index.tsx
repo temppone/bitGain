@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import { DashboardContainer, DashboardHeader, DashboardTitle, LogoutButton } from './styles';
 import Historic from '../../components/Historic';
 import Head from '../../components/Head';
@@ -8,18 +7,18 @@ import Card from '../../components/Card';
 import { useDataContext } from '../../contexts/DataContext';
 import { defaultTheme } from '../../styles/theme';
 import { toBtc, toReal, toBrita } from '../../core/parsers/NumberParses';
-import { getToday, getYesterday } from '../../core/parsers/DateParses';
+// import { getToday, getYesterday } from '../../core/parsers/DateParses';
 
 const Dashboard = () => {
     const { logout } = useFirebaseContext();
-    const { currentUser, getBritaValue } = useDataContext();
-    const britaValueToday = getBritaValue(getToday());
-    const britaValueYesterday = getBritaValue(getYesterday());
+    const { currentUser } = useDataContext();
+    // const britaValueToday = getBritaValueDate(getToday());
+    // const britaValueYesterday = getBritaValueDate(getYesterday());
 
-    useEffect(() => {
-        console.log(britaValueYesterday);
-        console.log(britaValueToday);
-    });
+    // useEffect(() => {
+    //     console.log(britaValueYesterday);
+    //     console.log(britaValueToday);
+    // });
 
     return (
         <DashboardContainer>

@@ -1,14 +1,15 @@
 import axios from 'axios';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import User from '../models/user-model';
-import { BRITA_VALUE_GET } from '../services/api/api';
+import { BRITA_VALUE_DATE_GET, BRITA_VALUE_TODAY_GET } from '../services/api/api';
 
 type DataContextType = {
     saveUser: (user: User) => void;
     getUserById: (email: string) => User | null;
     currentUser: User;
     setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
-    getBritaValue: any;
+    getBritaValueDate: any;
+    britaToday: any;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -16,6 +17,7 @@ export const useDataContext = () => useContext(DataContext);
 
 export const DataProvider = ({ children }: any) => {
     const [currentUser, setCurrentUser] = useState({} as User);
+    const [britaToday, setBritaToday] = useState('');
 
     const saveUser = (user: User) => {
         localStorage.setItem(`user:${user.email}`, JSON.stringify(user));
@@ -32,15 +34,32 @@ export const DataProvider = ({ children }: any) => {
         return JSON.parse(user) as User;
     };
 
-    const getBritaValue = async (date: string) => {
-        const { url, params } = BRITA_VALUE_GET(date);
+    const getBritaValueDate = async (date: string) => {
+        const { url, params } = BRITA_VALUE_DATE_GET(date);
         const response = await axios.get(url, { params });
         return response;
     };
 
+    const getBritaValueToday = async () => {
+        const { url, params } = BRITA_VALUE_TODAY_GET();
+        const response = await axios.get(url, { params });
+        setBritaToday(response.data.value[0].cotacaoCompra);
+    };
+
+    useEffect(() => {
+        getBritaValueToday();
+    }, []);
+
     return (
         <DataContext.Provider
-            value={{ saveUser, getUserById, currentUser, setCurrentUser, getBritaValue }}
+            value={{
+                saveUser,
+                getUserById,
+                currentUser,
+                setCurrentUser,
+                getBritaValueDate,
+                britaToday,
+            }}
         >
             {children}
         </DataContext.Provider>

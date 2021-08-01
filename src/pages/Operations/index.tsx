@@ -2,6 +2,7 @@
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useEffect, useState } from 'react';
 import { ptShort } from 'yup-locale-pt';
 import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
@@ -20,8 +21,13 @@ import {
 } from './styles';
 
 const Operations = () => {
-    const { currentUser } = useDataContext();
+    const { currentUser, britaToday } = useDataContext();
+    const [transferedValue, setTransferedValue] = useState(0);
     const { id } = useParams<{ id: string }>();
+
+    useEffect(() => {
+        console.log(britaToday);
+    }, [britaToday]);
 
     type OperationsType = {
         valueToSell: number;
@@ -39,10 +45,13 @@ const Operations = () => {
         formState: { errors },
     } = useForm<OperationsType>({ resolver: yupResolver(schema) });
 
-    const transferToReal = (value: any) => {
-        console.log(value);
-        return value;
+    const transferToReal = (values: any) => {
+        setTransferedValue(Number(+values.valueToSell * britaToday));
+        console.log(transferedValue);
+
+        return values;
     };
+
     return (
         <OperationsContainer>
             <Head title='Operações' description='Página de operações da BitGain' />
