@@ -28,7 +28,7 @@ const Home = () => {
         if (isLogged) {
             history.push('/dashboard');
         }
-    }, [isLogged]);
+    }, [isLogged, history]);
 
     const divs = {
         signIn: <SignIn />,

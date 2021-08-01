@@ -6,3 +6,7 @@ export const toReal = (rawNumber: number) => {
 export const toBtc = (rawNumber: number) => {
     return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'BTC' }).format(rawNumber);
 };
+
+export const toBrita = (rawNumber: number) => {
+    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'BRI' }).format(rawNumber);
+};

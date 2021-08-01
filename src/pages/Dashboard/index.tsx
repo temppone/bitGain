@@ -7,7 +7,7 @@ import { useFirebaseContext } from '../../contexts/FirebaseContext';
 import Card from '../../components/Card';
 import { useDataContext } from '../../contexts/DataContext';
 import { defaultTheme } from '../../styles/theme';
-import { toBtc, toReal } from '../../core/parsers/NumberParses';
+import { toBtc, toReal, toBrita } from '../../core/parsers/NumberParses';
 import { getToday, getYesterday } from '../../core/parsers/DateParses';
 
 const Dashboard = () => {
@@ -37,21 +37,23 @@ const Dashboard = () => {
                 background={defaultTheme.palette.gradientBlue}
                 cardCoinValue={toReal(currentUser.wallet.real)}
                 secundaryField={{ secundaryFieldName: 'Alo', secundaryFieldCoinValue: '291839328' }}
-                id='/operations:real'
+                id='/dashboard'
                 // britaTodayValue={britaValueToday}
                 // britaYesterdayValue={britaValueYesterday}
             />
             <Card
                 background={defaultTheme.palette.gradientGrey}
                 cardCoinValue={toBtc(currentUser.wallet.bitcoin)}
-                id='/operations:real'
+                path='operations/'
+                id='bitcoin'
                 // britaTodayValue={britaValueToday}
                 // britaYesterdayValue={britaValueYesterday}
             />
             <Card
                 background={defaultTheme.palette.gradientGrey}
-                cardCoinValue={currentUser.wallet.real.toString()}
-                id='/operations:real'
+                cardCoinValue={toBrita(currentUser.wallet.brita)}
+                path='operations/'
+                id='brita'
                 // britaTodayValue={britaValueToday}
                 // britaYesterdayValue={britaValueYesterday}
             />

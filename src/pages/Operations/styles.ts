@@ -47,3 +47,9 @@ export const OperationsContainer = styled.div`
         margin: 0 auto;
     }
 `;
+
+export const OperationsButtons = styled.div`
+    display: flex;
+    justify-content: space-space-between;
+    width: 100%;
+`;

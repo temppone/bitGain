@@ -32,7 +32,7 @@ const App = (): JSX.Element => (
                                     <ProtectedRoute path='/dashboard'>
                                         <Dashboard />
                                     </ProtectedRoute>
-                                    <ProtectedRoute path='/operations:id'>
+                                    <ProtectedRoute path='/operations/:id'>
                                         <Operations />
                                     </ProtectedRoute>
                                     <Route path='*'>

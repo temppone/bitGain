@@ -14,12 +14,13 @@ import {
 
 type CardTypes = {
     fieldName?: string;
-    cardCoinValue: string;
+    cardCoinValue: any;
     background: string;
     secundaryField?: {
         secundaryFieldName?: string;
         secundaryFieldCoinValue?: string;
     };
+    path?: string;
     id?: string;
     // britaTodayValue?: number;
     // britaYesterdayValue?: number;
@@ -30,11 +31,12 @@ const Card = ({
     cardCoinValue,
     background,
     secundaryField,
-    id = '/',
+    path = '',
+    id = '',
 }: // britaTodayValue,
 // britaYesterdayValue,
 CardTypes) => (
-    <LinkCard to={id}>
+    <LinkCard to={`${path}${id}`}>
         <CardContainer background={background}>
             <CardBox>
                 <CardTitle>{fieldName}</CardTitle>
