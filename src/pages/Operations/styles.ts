@@ -5,7 +5,8 @@ export const OperationsContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.8rem;
 
     div {
         animation: slideOpacity 0.5s;
@@ -48,8 +49,25 @@ export const OperationsContainer = styled.div`
     }
 `;
 
+export const OperationsHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    width: 100%;
+`;
+
+export const OperationsTitle = styled.h1`
+    width: 100%;
+`;
+
+export const OperationsForm = styled.form`
+    width: 100%;
+`;
+
 export const OperationsButtons = styled.div`
     display: flex;
-    justify-content: space-space-between;
+    justify-content: space-between;
+    padding: 1rem;
     width: 100%;
 `;
