@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { createContext, useContext, useState } from 'react';
 import User from '../models/user-model';
 import { BRITA_VALUE_GET } from '../services/api/api';
@@ -32,7 +33,7 @@ export const DataProvider = ({ children }: any) => {
     };
 
     const getBritaValue = async (date: string) => {
-        const { url, options } = await BRITA_VALUE_GET(date);
+        const { url, options } = BRITA_VALUE_GET(date);
         const response = await fetch(url, options);
         console.log(response);
         return response;

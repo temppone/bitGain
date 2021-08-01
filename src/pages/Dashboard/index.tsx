@@ -8,14 +8,18 @@ import { useDataContext } from '../../contexts/DataContext';
 import { defaultTheme } from '../../styles/theme';
 import { toBtc, toReal } from '../../core/parsers/NumberParses';
 import { getToday, getYesterday } from '../../core/parsers/DateParses';
+import { useEffect } from 'react';
 
 const Dashboard = () => {
     const { logout } = useFirebaseContext();
     const { currentUser, getBritaValue } = useDataContext();
+    const britaToday = getBritaValue(getToday());
+    const britaYesterday = getBritaValue(getYesterday());
 
-    console.log(getBritaValue(getYesterday()));
-    console.log(getToday());
-    console.log(getYesterday());
+    useEffect(() => {
+        console.log(britaYesterday);
+        console.log(britaToday);
+    });
 
     return (
         <DashboardContainer>
