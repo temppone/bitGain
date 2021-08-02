@@ -35,7 +35,6 @@ const Dashboard = () => {
             <Card
                 background={defaultTheme.palette.gradientBlue}
                 cardCoinValue={toReal(currentUser.wallet.real)}
-                secundaryField={{ secundaryFieldName: 'Alo', secundaryFieldCoinValue: '291839328' }}
                 id='/dashboard'
                 // britaTodayValue={britaValueToday}
                 // britaYesterdayValue={britaValueYesterday}

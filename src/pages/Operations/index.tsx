@@ -2,7 +2,8 @@
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useState } from 'react';
 import { ptShort } from 'yup-locale-pt';
 import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
@@ -11,7 +12,6 @@ import Head from '../../components/Head';
 import Input from '../../components/Input';
 import { useDataContext } from '../../contexts/DataContext';
 import { defaultTheme } from '../../styles/theme';
-
 import {
     OperationsContainer,
     OperationsHeader,
@@ -24,10 +24,6 @@ const Operations = () => {
     const { currentUser, britaToday } = useDataContext();
     const [transferedValue, setTransferedValue] = useState(0);
     const { id } = useParams<{ id: string }>();
-
-    useEffect(() => {
-        console.log(britaToday);
-    }, [britaToday]);
 
     type OperationsType = {
         valueToSell: number;
@@ -46,9 +42,14 @@ const Operations = () => {
     } = useForm<OperationsType>({ resolver: yupResolver(schema) });
 
     const transferToReal = (values: any) => {
-        setTransferedValue(Number(+values.valueToSell * britaToday));
-        console.log(transferedValue);
-
+        if (values < currentUser.wallet.brita) {
+            setTransferedValue(Number(+values.valueToSell * britaToday));
+            const userWallet = currentUser.wallet.brita - transferedValue;
+            currentUser.wallet.brita = userWallet;
+            toast.success(`Valor vendido ${transferedValue}`);
+        } else {
+            toast.error('Valor incorreto');
+        }
         return values;
     };
 
@@ -91,6 +92,12 @@ const Operations = () => {
                         color={defaultTheme.palette.primaryLight}
                         name='Vender'
                         width='auto'
+                    />
+                    <Button
+                        background='transparent'
+                        color={defaultTheme.palette.primaryLight}
+                        name='Comprar'
+                        width='autho'
                     />
                 </OperationsForm>
             </OperationsButtons>

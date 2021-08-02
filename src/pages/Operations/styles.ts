@@ -67,7 +67,9 @@ export const OperationsForm = styled.form`
 
 export const OperationsButtons = styled.div`
     display: flex;
-    justify-content: space-between;
     padding: 1rem;
     width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 `;
