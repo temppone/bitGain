@@ -83,12 +83,6 @@ const Operations = () => {
             />
 
             <OperationsButtons>
-                <Button
-                    background='transparent'
-                    color={defaultTheme.palette.primaryLight}
-                    name={id === 'brita' ? 'Trocar por bitcoin' : 'Trocar por brita'}
-                    width='auto'
-                />
                 <OperationsForm onSubmit={handleSubmit(transferToReal)}>
                     <Controller
                         name='valueToSell'

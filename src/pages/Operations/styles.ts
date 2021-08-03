@@ -61,17 +61,20 @@ export const OperationsTitle = styled.h1`
     width: 100%;
 `;
 
-export const OperationsForm = styled.form`
-    width: 100%;
-`;
-
 export const OperationsButtons = styled.div`
     display: flex;
     padding: 1rem;
     width: 100%;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
+`;
+
+export const OperationsForm = styled.form`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 `;
 
 export const OperationsValues = styled.div`
