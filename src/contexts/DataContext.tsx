@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { createContext, useContext, useState, useEffect } from 'react';
 import User from '../models/user-model';
-import { BRITA_VALUE_DATE_GET, BRITA_VALUE_TODAY_GET } from '../services/api/api';
+import {
+    BITCOIN_VALUE_TODAY_GET,
+    BRITA_VALUE_DATE_GET,
+    BRITA_VALUE_TODAY_GET,
+} from '../services/api/api';
 
 type DataContextType = {
     saveUser: (user: User) => void;
@@ -10,6 +14,8 @@ type DataContextType = {
     setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
     getBritaValueDate: any;
     britaToday: any;
+    getBitcoinValueToday: any;
+    bitcoinToday: any;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -18,6 +24,7 @@ export const useDataContext = () => useContext(DataContext);
 export const DataProvider = ({ children }: any) => {
     const [currentUser, setCurrentUser] = useState({} as User);
     const [britaToday, setBritaToday] = useState('');
+    const [bitcoinToday, setBitcoinToday] = useState('');
 
     const saveUser = (user: User) => {
         localStorage.setItem(`user:${user.email}`, JSON.stringify(user));
@@ -46,8 +53,15 @@ export const DataProvider = ({ children }: any) => {
         setBritaToday(response.data.value[0].cotacaoCompra);
     };
 
+    const getBitcoinValueToday = async () => {
+        const { url } = BITCOIN_VALUE_TODAY_GET();
+        const response = await axios.get(url);
+        setBitcoinToday(response.data.ticker.sell);
+    };
+
     useEffect(() => {
         getBritaValueToday();
+        getBitcoinValueToday();
     }, []);
 
     return (
@@ -59,6 +73,8 @@ export const DataProvider = ({ children }: any) => {
                 setCurrentUser,
                 getBritaValueDate,
                 britaToday,
+                getBitcoinValueToday,
+                bitcoinToday,
             }}
         >
             {children}

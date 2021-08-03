@@ -5,6 +5,8 @@ import { getToday } from '../../core/parsers/DateParses';
 export const apiBrita =
     'https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)';
 
+export const bitcoinApi = 'https://www.mercadobitcoin.net/api/BTC/ticker/';
+
 // eslint-disable-next-line arrow-body-style
 export const BRITA_VALUE_DATE_GET = (date: string) => {
     return {
@@ -24,6 +26,15 @@ export const BRITA_VALUE_TODAY_GET = () => {
         params: {
             '@dataCotacao': getToday(),
         },
+        options: {
+            method: 'GET',
+        },
+    };
+};
+
+export const BITCOIN_VALUE_TODAY_GET = () => {
+    return {
+        url: `${bitcoinApi}`,
         options: {
             method: 'GET',
         },

@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable react/jsx-props-no-spreading */
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -18,11 +20,15 @@ import {
     OperationsTitle,
     OperationsForm,
     OperationsButtons,
+    OperationsValues,
+    OperationsValuesItems,
 } from './styles';
+import { toBrita, toBtc, toReal } from '../../core/parsers/NumberParses';
 
 const Operations = () => {
-    const { currentUser, britaToday } = useDataContext();
-    const [transferedValue, setTransferedValue] = useState(0);
+    const { currentUser, britaToday, bitcoinToday } = useDataContext();
+    const [britaTotal, setBritaTotal] = useState(0);
+    const [bitcoinTotal, setBitcoinTotal] = useState(0);
     const { id } = useParams<{ id: string }>();
 
     type OperationsType = {
@@ -41,16 +47,26 @@ const Operations = () => {
         formState: { errors },
     } = useForm<OperationsType>({ resolver: yupResolver(schema) });
 
-    const transferToReal = (values: any) => {
-        if (values < currentUser.wallet.brita) {
-            setTransferedValue(Number(+values.valueToSell * britaToday));
-            const userWallet = currentUser.wallet.brita - transferedValue;
-            currentUser.wallet.brita = userWallet;
-            toast.success(`Valor vendido ${transferedValue}`);
+    const transferToReal = ({ valueToSell }: OperationsType) => {
+        if (id === 'brita') {
+            if (valueToSell > currentUser.wallet.brita) {
+                const result = britaToday * valueToSell;
+                setBritaTotal(result);
+                currentUser.wallet.brita += valueToSell;
+                currentUser.wallet.real -= result;
+            } else {
+                toast.error('Valor incorreto');
+            }
+        } else if (valueToSell > currentUser.wallet.bitcoin) {
+            const result = bitcoinToday * valueToSell;
+            setBitcoinTotal(result);
+            currentUser.wallet.bitcoin += valueToSell;
+            currentUser.wallet.real -= result;
         } else {
             toast.error('Valor incorreto');
         }
-        return values;
+
+        return toast.success('Feito!');
     };
 
     return (
@@ -62,7 +78,7 @@ const Operations = () => {
             <Card
                 background={defaultTheme.palette.gradientSecundaryBlue}
                 fieldName='BitCoin'
-                cardCoinValue={currentUser.wallet.bitcoin}
+                cardCoinValue={currentUser.wallet.brita}
                 id={id}
             />
 
@@ -79,7 +95,7 @@ const Operations = () => {
                         control={control}
                         render={(props) => (
                             <Input
-                                label='Valor'
+                                label='Valor em reais'
                                 type='number'
                                 inputError={errors.valueToSell?.message ?? ''}
                                 placeholder='0000'
@@ -93,14 +109,17 @@ const Operations = () => {
                         name='Vender'
                         width='auto'
                     />
-                    <Button
-                        background='transparent'
-                        color={defaultTheme.palette.primaryLight}
-                        name='Comprar'
-                        width='autho'
-                    />
                 </OperationsForm>
             </OperationsButtons>
+            <OperationsValues>
+                <OperationsValuesItems>Total em Britas {toBrita(britaTotal)}</OperationsValuesItems>
+                <OperationsValuesItems>
+                    Total em Bitcoin {toBtc(bitcoinTotal)}
+                </OperationsValuesItems>
+                <OperationsValuesItems>
+                    Total em Real {toReal(currentUser.wallet.real)}
+                </OperationsValuesItems>
+            </OperationsValues>
         </OperationsContainer>
     );
 };

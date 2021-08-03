@@ -73,3 +73,16 @@ export const OperationsButtons = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
 `;
+
+export const OperationsValues = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const OperationsValuesItems = styled.div`
+    align-items: flex-start;
+    margin: 1rem;
+    padding: 1rem;
+    background: ${({ theme }) => theme.palette.gradientBlue};
+    border-radius: 0.8rem;
+`;
