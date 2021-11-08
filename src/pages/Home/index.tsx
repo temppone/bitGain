@@ -9,7 +9,7 @@ import {
     HomeButtons,
     HomeBackButton,
 } from './styles';
-import { ReactComponent as HomeSvg } from './img/homeSvg.svg';
+import { ReactComponent as HomeSvg } from '../../assets/img/homeSvg.svg';
 import Button from '../../components/Button';
 import SignUp from '../../components/SignUp';
 import SignIn from '../../components/SignIn';

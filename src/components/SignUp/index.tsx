@@ -13,13 +13,21 @@ import PageTitle from '../PageTitle';
 import { SignUpContainer, SignUpForm } from './styles';
 
 const SignUp = () => {
-    const { createUser, isLogged } = useFirebaseContext();
-    const [disabledButton, setDisabledButton] = useState(false);
-
     type CreateUserType = {
         email: string;
         password: string;
         passwordConfirm: string;
+    };
+
+    type TransltedErrorsType = {
+        [key: string]: string;
+    };
+
+    const { createUser, isLogged } = useFirebaseContext();
+    const [disabledButton, setDisabledButton] = useState(false);
+
+    const translatedErrors: TransltedErrorsType = {
+        'auth/email-already-in-use': 'E-mail já cadastrado',
     };
 
     const schema: yup.SchemaOf<CreateUserType> = yup.object({
@@ -31,7 +39,7 @@ const SignUp = () => {
             .oneOf([yup.ref('password'), null], 'Senhas precisam ser iguais'),
     });
 
-    const { control, handleSubmit, errors } = useForm<CreateUserType>({
+    const { control, handleSubmit, setError, errors } = useForm<CreateUserType>({
         resolver: yupResolver(schema),
     });
 
@@ -40,9 +48,14 @@ const SignUp = () => {
         toast.promise(createUser(data), {
             loading: 'Carregando',
             success: 'Logado',
-            error: () => {
+            error: (err) => {
                 setDisabledButton(false);
-                return 'Algo deu errado';
+                setError('email', {
+                    type: 'manual',
+                    message: translatedErrors[err.code] || 'Erro ao logar',
+                });
+
+                return 'Erro ao logar';
             },
         });
     };

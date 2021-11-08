@@ -22,6 +22,7 @@ import {
     OperationsButtons,
     OperationsValues,
     OperationsValuesItems,
+    OperationsBackButton,
 } from './styles';
 import { toBrita, toBtc, toReal } from '../../core/parsers/NumberParses';
 
@@ -72,7 +73,9 @@ const Operations = () => {
     return (
         <OperationsContainer>
             <Head title='Operações' description='Página de operações da BitGain' />
+
             <OperationsHeader>
+                <OperationsBackButton />
                 <OperationsTitle>Operações</OperationsTitle>
             </OperationsHeader>
             <Card

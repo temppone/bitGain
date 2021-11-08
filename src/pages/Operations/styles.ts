@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as BackButton } from '../../assets/img/back.svg';
 
 export const OperationsContainer = styled.div`
     display: flex;
@@ -55,6 +56,10 @@ export const OperationsHeader = styled.div`
     align-items: flex-start;
     padding: 1rem;
     width: 100%;
+`;
+
+export const OperationsBackButton = styled(BackButton)`
+    width: 2.5rem;
 `;
 
 export const OperationsTitle = styled.h1`

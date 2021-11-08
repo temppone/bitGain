@@ -48,6 +48,16 @@ export const DashboardContainer = styled.div`
     }
 `;
 
+export const DashboardCardsContainer = styled.div`
+    width: 100%;
+    @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+`;
+
 export const DashboardHeader = styled.div`
     display: flex;
     flex-direction: row;

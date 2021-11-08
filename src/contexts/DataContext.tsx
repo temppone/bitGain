@@ -50,7 +50,7 @@ export const DataProvider = ({ children }: any) => {
     const getBritaValueToday = async () => {
         const { url, params } = BRITA_VALUE_TODAY_GET();
         const response = await axios.get(url, { params });
-        setBritaToday(response.data.value[0].cotacaoCompra);
+        setBritaToday(response.data.value[0]);
     };
 
     const getBitcoinValueToday = async () => {

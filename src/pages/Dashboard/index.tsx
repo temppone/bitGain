@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom';
-import { DashboardContainer, DashboardHeader, DashboardTitle, LogoutButton } from './styles';
+import {
+    DashboardCardsContainer,
+    DashboardContainer,
+    DashboardHeader,
+    DashboardTitle,
+    LogoutButton,
+} from './styles';
 import Historic from '../../components/Historic';
 import Head from '../../components/Head';
 import { useFirebaseContext } from '../../contexts/FirebaseContext';
@@ -31,30 +37,32 @@ const Dashboard = () => {
                     </Link>
                 </LogoutButton>
             </DashboardHeader>
+            <DashboardCardsContainer>
+                <Card
+                    background={defaultTheme.palette.gradientBlue}
+                    cardCoinValue={toReal(currentUser.wallet.real)}
+                    id='/dashboard'
+                    // britaTodayValue={britaValueToday}
+                    // britaYesterdayValue={britaValueYesterday}
+                />
+                <Card
+                    background={defaultTheme.palette.gradientGrey}
+                    cardCoinValue={toBtc(currentUser.wallet.bitcoin)}
+                    path='operations/'
+                    id='bitcoin'
+                    // britaTodayValue={britaValueToday}
+                    // britaYesterdayValue={britaValueYesterday}
+                />
+                <Card
+                    background={defaultTheme.palette.gradientGrey}
+                    cardCoinValue={toBrita(currentUser.wallet.brita)}
+                    path='operations/'
+                    id='brita'
+                    // britaTodayValue={britaValueToday}
+                    // britaYesterdayValue={britaValueYesterday}
+                />
+            </DashboardCardsContainer>
 
-            <Card
-                background={defaultTheme.palette.gradientBlue}
-                cardCoinValue={toReal(currentUser.wallet.real)}
-                id='/dashboard'
-                // britaTodayValue={britaValueToday}
-                // britaYesterdayValue={britaValueYesterday}
-            />
-            <Card
-                background={defaultTheme.palette.gradientGrey}
-                cardCoinValue={toBtc(currentUser.wallet.bitcoin)}
-                path='operations/'
-                id='bitcoin'
-                // britaTodayValue={britaValueToday}
-                // britaYesterdayValue={britaValueYesterday}
-            />
-            <Card
-                background={defaultTheme.palette.gradientGrey}
-                cardCoinValue={toBrita(currentUser.wallet.brita)}
-                path='operations/'
-                id='brita'
-                // britaTodayValue={britaValueToday}
-                // britaYesterdayValue={britaValueYesterday}
-            />
             <Historic />
         </DashboardContainer>
     );
